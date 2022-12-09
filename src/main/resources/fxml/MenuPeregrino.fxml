@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/MenuPrincipal.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PeregrinosFX.controller.MenuPeregrinoController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="638.0" styleClass="pane" stylesheets="@../styles/MenuPeregrino.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="exportarcarnetBTN" layoutX="201.0" layoutY="174.0" mnemonicParsing="false" onAction="#abrirExportarCarnet" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Exportar carnet" textFill="#eed4b5">
+                <font>
+                    <Font name="System Bold Italic" size="19.0" />
+                </font>
+            </Button>
+             <Button fx:id="cerrarsesionBTN" layoutX="457.0" layoutY="339.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #B22222;" text="Cerrar sesión" textFill="WHITE">
+                 <font>
+                     <Font name="System Bold Italic" size="16.0" />
+                 </font></Button>
+         </children></Pane>
+   </children>
+</AnchorPane>

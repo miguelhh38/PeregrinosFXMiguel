@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PeregrinosFX.controller.UsuarioCreadoController">
+   <children>
+      <Pane layoutX="113.0" layoutY="57.0" prefHeight="400.0" prefWidth="600.0" styleClass="pane" stylesheets="@../styles/UsuarioCreado.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="49.0" layoutY="62.0" text="Usuario:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font></Label>
+            <Label layoutX="49.0" layoutY="128.0" text="Contraseña:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font></Label>
+            <Label layoutX="47.0" layoutY="257.0" text="Parada inicial:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font></Label>
+            <Label layoutX="49.0" layoutY="193.0" text="Nacionalidad:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font></Label>
+            <TextField fx:id="usuarioTXT" editable="false" layoutX="49.0" layoutY="97.0" prefHeight="25.0" prefWidth="331.0" style="-fx-background-color: D5B794;" />
+            <Button layoutX="409.0" layoutY="161.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: #45322e;" text="Mostrar contraseña" textFill="#eed4b5">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Button>
+            <TextField fx:id="nacionalidadTXT" editable="false" layoutX="49.0" layoutY="225.0" prefHeight="25.0" prefWidth="331.0" style="-fx-background-color: D5B794;" />
+            <TextField fx:id="paradaTXT" editable="false" layoutX="49.0" layoutY="290.0" prefHeight="25.0" prefWidth="331.0" style="-fx-background-color: D5B794;" />
+            <Button fx:id="inicioBTN" layoutX="175.0" layoutY="336.0" mnemonicParsing="false" onAction="#inicioAction" prefHeight="37.0" prefWidth="250.0" style="-fx-background-color: #009000;" text="Inicio" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font></Button>
+            <TextField layoutX="49.0" layoutY="161.0" prefHeight="25.0" prefWidth="331.0" style="-fx-background-color: D5B794;" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

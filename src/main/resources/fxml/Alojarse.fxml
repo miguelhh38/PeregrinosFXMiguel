@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PeregrinosFX.controller.AlojarseController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0" styleClass="pane" stylesheets="@../styles/Alojarse.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="paradaLBL" layoutX="32.0" layoutY="57.0" text="Parada:" textFill="45322e">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="peregrinoLBL" layoutX="300.0" layoutY="57.0" text="Peregrino:" textFill="45322e">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="peregrinoCB" layoutX="433.0" layoutY="62.0" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: D5B794;" />
+            <ComboBox fx:id="paradaCB" editable="true" layoutX="130.0" layoutY="62.0" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: D5B794;" />
+            <Label fx:id="estanciaLBL" layoutX="32.0" layoutY="120.0" text="¿Va a realizar una estancia?" textFill="45322e">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="estanciaCheck" layoutX="365.0" layoutY="129.0" mnemonicParsing="false" onAction="#estanciaClick" prefWidth="25.0" textFill="45322e" />
+            <Label fx:id="vipLBL" layoutX="32.0" layoutY="183.0" text="VIP:" textFill="#45322e70">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Label>
+
+            <RadioButton fx:id="siRB" layoutX="104.0" layoutY="185.0" mnemonicParsing="false" text="SI" textFill="#45322e73">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="vip" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="noRB" layoutX="198.0" layoutY="185.0" mnemonicParsing="false" text="NO" textFill="#45322e73" toggleGroup="$vip">
+               <font>
+                  <Font name="System Italic" size="20.0" />
+               </font>
+            </RadioButton>
+            <Button fx:id="aceptarBTN" layoutX="32.0" layoutY="325.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: #009000;" text="Alojarse" textFill="#fafafa">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font></Button>
+            <Button fx:id="cancelarBTN" layoutX="391.0" layoutY="325.0" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: #B22222;" text="Inicio" textFill="#fafafa">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font></Button>
+         </children></Pane>
+   </children>
+</AnchorPane>
