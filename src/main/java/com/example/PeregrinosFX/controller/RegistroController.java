@@ -246,8 +246,9 @@ public class RegistroController implements Initializable {
                 peregrino.setNacionalidad((String) nacionalidadCB.getValue());
                 peregrino.setCarnet(newCarnet);
 
-                usuarioActual = userService.addUser(user);
                 peregrinoService.addPeregrino(peregrino);
+                usuarioActual = userService.addUser(user);
+
 
                 stageManager.switchScene(FxmlView.USUARIOCREADO);
 

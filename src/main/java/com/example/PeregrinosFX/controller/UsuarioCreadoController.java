@@ -59,7 +59,7 @@ public class UsuarioCreadoController implements Initializable {
         return passTXT;
     }
 
-    public void setPassField(TextField passTXT) {
+    public void setPassTXT(TextField passTXT) {
         this.passTXT = passTXT;
     }
 
