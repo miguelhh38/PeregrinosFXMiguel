@@ -9,15 +9,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static com.example.PeregrinosFX.controller.LoginController.rol;
@@ -49,7 +48,7 @@ public class ExportarCarnetController implements Initializable{
         //CODIGO MUESTRA XML EXPORTADO
         if (rol == 1) {
             peregrinoService.exportarCarnetXML(RegistroController.usuarioActual.getPeregrino());
-
+            carnetExp();
         }
         if (rol == 3) {
             peregrinoService.exportarCarnetXML((Peregrino) peregrinoCB.getValue());
@@ -93,5 +92,13 @@ public class ExportarCarnetController implements Initializable{
         for (Peregrino p: peregrinos) {
             peregrinoCB.getItems().add(p.peregrinoData());
         }
+    }
+
+    private void carnetExp() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("EXPORTACION XML");
+        alert.setHeaderText(null);
+        alert.setContentText("El carnet ha sido exportado a XML correctamente");
+        Optional<ButtonType> result = alert.showAndWait();
     }
 }

@@ -27,7 +27,7 @@ public class Peregrino {
     private Carnet carnet;
 
 
-    @OneToMany(mappedBy = "peregrino")
+    @OneToMany(mappedBy = "peregrino", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Estancia> estancias;
 
     @ManyToMany
