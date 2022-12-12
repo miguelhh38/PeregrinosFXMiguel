@@ -94,4 +94,10 @@ public class Peregrino {
                 ", carnet=" + carnet +
                 '}';
     }
+
+    public String peregrinoData() {
+        String ret = "";
+        ret = "Id Peregrino: " + idPeregrino + " | Nombre: " + nombre + " | Nacionalidad: " + nacionalidad;
+        return ret;
+    }
 }

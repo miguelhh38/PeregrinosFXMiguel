@@ -123,6 +123,7 @@ public class LoginController implements Initializable {
             if (idPerfil == 1) {
                 rol = Long.valueOf(1);
                 stageManager.switchScene(FxmlView.MENUPEREGRINO);
+                RegistroController.usuarioActual = userService.findByUsuario(usuarioTF.getText());
             } else if (idPerfil == 2) {
                 rol = Long.valueOf(2);
                 stageManager.switchScene(FxmlView.MENUADMINPARADA);
