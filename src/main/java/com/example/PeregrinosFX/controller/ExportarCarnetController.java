@@ -49,6 +49,7 @@ public class ExportarCarnetController implements Initializable{
         //CODIGO MUESTRA XML EXPORTADO
         if (rol == 1) {
             peregrinoService.exportarCarnetXML(RegistroController.usuarioActual.getPeregrino());
+
         }
         if (rol == 3) {
             peregrinoService.exportarCarnetXML((Peregrino) peregrinoCB.getValue());
