@@ -52,7 +52,7 @@ public class ExportarCarnetController implements Initializable{
         }
         if (rol == 3) {
             peregrinoService.exportarCarnetXML((Peregrino) peregrinoCB.getValue());
-
+            carnetExp();
         }
 
     }
@@ -89,10 +89,9 @@ public class ExportarCarnetController implements Initializable{
 
     private void loadPeregrinoCB() {
         ObservableList<Peregrino> peregrinos = FXCollections.observableList(peregrinoService.findAll());
-        for (Peregrino p: peregrinos) {
-            peregrinoCB.getItems().add(p.peregrinoData());
-        }
+        peregrinoCB.setItems(peregrinos);
     }
+
 
     private void carnetExp() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

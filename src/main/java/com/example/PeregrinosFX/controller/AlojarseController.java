@@ -1,7 +1,19 @@
 package com.example.PeregrinosFX.controller;
 
+import com.example.PeregrinosFX.bean.Carnet;
+import com.example.PeregrinosFX.bean.Estancia;
+import com.example.PeregrinosFX.bean.Parada;
+import com.example.PeregrinosFX.bean.Peregrino;
 import com.example.PeregrinosFX.config.StageManager;
+import com.example.PeregrinosFX.service.ParadaService;
+import com.example.PeregrinosFX.service.PeregrinoService;
+import com.example.PeregrinosFX.service.impl.CarnetServiceImp;
+import com.example.PeregrinosFX.service.impl.EstanciaServiceImp;
+import com.example.PeregrinosFX.service.impl.ParadaServiceImp;
+import com.example.PeregrinosFX.service.impl.PeregrinoServiceImp;
 import com.example.PeregrinosFX.view.FxmlView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +25,9 @@ import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static com.example.PeregrinosFX.controller.LoginController.rol;
@@ -23,6 +38,12 @@ public class AlojarseController implements Initializable {
     @Lazy
     @Autowired
     private StageManager stageManager;
+
+    @Autowired
+    private ParadaServiceImp paradaService;
+
+    @Autowired
+    private EstanciaServiceImp estanciaService;
 
     @FXML
     private Label paradaLBL;
@@ -46,19 +67,19 @@ public class AlojarseController implements Initializable {
     private ComboBox peregrinoCB;
 
     @FXML
-    private ToggleGroup vip;
-
-    @FXML
-    private RadioButton siRB;
-
-    @FXML
-    private RadioButton noRB;
-
-    @FXML
-    private Button alojarseBTN;
+    private CheckBox vipCB;
 
     @FXML
     private Button cancelarBTN;
+
+    @FXML
+    private Button aceptarBTN;
+
+    @Autowired
+    private CarnetServiceImp carnetService;
+
+    @Autowired
+    private PeregrinoServiceImp peregrinoService;
 
     public StageManager getStageManager() {
         return stageManager;
@@ -124,38 +145,6 @@ public class AlojarseController implements Initializable {
         this.peregrinoCB = peregrinoCB;
     }
 
-    public ToggleGroup getVip() {
-        return vip;
-    }
-
-    public void setVip(ToggleGroup vip) {
-        this.vip = vip;
-    }
-
-    public RadioButton getSiRB() {
-        return siRB;
-    }
-
-    public void setSiRB(RadioButton siRB) {
-        this.siRB = siRB;
-    }
-
-    public RadioButton getNoRB() {
-        return noRB;
-    }
-
-    public void setNoRB(RadioButton noRB) {
-        this.noRB = noRB;
-    }
-
-    public Button getAlojarseBTN() {
-        return alojarseBTN;
-    }
-
-    public void setAlojarseBTN(Button alojarseBTN) {
-        this.alojarseBTN = alojarseBTN;
-    }
-
     public Button getCancelarBTN() {
         return cancelarBTN;
     }
@@ -168,13 +157,11 @@ public class AlojarseController implements Initializable {
     private void estanciaClick(ActionEvent event) throws IOException{
         if(estanciaCheck.isSelected()){
             vipLBL.setTextFill(Paint.valueOf("45322e"));
-            siRB.setTextFill(Paint.valueOf("45322e"));
-            noRB.setTextFill(Paint.valueOf("45322e"));
+            vipCB.setDisable(false);
         }
         else{
             vipLBL.setTextFill(Paint.valueOf("45322e70"));
-            siRB.setTextFill(Paint.valueOf("45322e70"));
-            noRB.setTextFill(Paint.valueOf("45322e70"));
+            vipCB.setDisable(true);
         }
 
     }
@@ -188,8 +175,101 @@ public class AlojarseController implements Initializable {
         }
     }
 
+    @FXML
+    private void alojarseAction(ActionEvent event) throws IOException {
+        if (estanciaCheck.isSelected()) {
+            if (rol == 2) {
+                Peregrino peregrino = (Peregrino) peregrinoCB.getValue();
+                List<Parada> paradasP = peregrino.getParadas();
+                paradasP.add(RegistroController.usuarioActual.getParada());
+                peregrino.setParadas(paradasP);
+                peregrino.getCarnet().setDistancia(peregrino.getCarnet().getDistancia() + 100);
+                carnetService.addCarnet(peregrino.getCarnet());
+                peregrinoService.addPeregrino(peregrino);
+
+                //creacion estancia
+                Estancia estancia = new Estancia();
+                estancia.setFecha(LocalDate.now());
+                estancia.setParada(RegistroController.usuarioActual.getParada());
+                estancia.setPeregrino(peregrino);
+                if (vipCB.isSelected()) {
+                    estancia.setVip(true);
+                } else {
+                    estancia.setVip(false);
+                }
+                peregrinoService.addPeregrino(peregrino);
+                estanciaService.addEstancia(estancia);
+            }
+            if (rol == 3) {
+                Peregrino peregrino = (Peregrino) peregrinoCB.getValue();
+                List<Parada> paradasP = peregrino.getParadas();
+                Parada parada = paradaService.findByNombre(paradaCB.getValue().toString());
+                paradasP.add(parada);
+                peregrino.setParadas(paradasP);
+                peregrino.getCarnet().setDistancia(peregrino.getCarnet().getDistancia() + 100);
+                carnetService.addCarnet(peregrino.getCarnet());
+
+                //creacion estancia
+                Estancia estancia = new Estancia();
+                estancia.setFecha(LocalDate.now());
+                estancia.setParada(parada);
+                estancia.setPeregrino(peregrino);
+                if (vipCB.isSelected()) {
+                    estancia.setVip(true);
+                } else {
+                    estancia.setVip(false);
+                }
+                peregrinoService.addPeregrino(peregrino);
+                estanciaService.addEstancia(estancia);
+            }
+        } else {
+            if (rol == 2) {
+                Peregrino peregrino = (Peregrino) peregrinoCB.getValue();
+                List<Parada> paradasP = peregrino.getParadas();
+                paradasP.add(RegistroController.usuarioActual.getParada());
+                peregrino.setParadas(paradasP);
+                peregrinoService.addPeregrino(peregrino);
+                peregrino.getCarnet().setDistancia(peregrino.getCarnet().getDistancia() + 100);
+                carnetService.addCarnet(peregrino.getCarnet());
+            }
+            if (rol == 3) {
+                Peregrino peregrino = (Peregrino) peregrinoCB.getValue();
+                List<Parada> paradasP = peregrino.getParadas();
+                paradasP.add(paradaService.findByNombre(paradaCB.getValue().toString()));
+                peregrino.setParadas(paradasP);
+                peregrinoService.addPeregrino(peregrino);
+                peregrino.getCarnet().setDistancia(peregrino.getCarnet().getDistancia() + 100);
+                carnetService.addCarnet(peregrino.getCarnet());
+
+            }
+        }
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (rol == 2) {
+            paradaCB.setValue(paradaService.findByNombre(RegistroController.usuarioActual.getParada().getNombre()).getNombre());
+            paradaCB.setDisable(true);
+            loadPeregrinoCB();
+        }
+        if (rol == 3) {
+            loadParadaCB();
+            loadPeregrinoCB();
+        }
+    }
 
+    private void loadParadaCB() {
+        ArrayList<Parada> paradas = new ArrayList<>();
+        paradas = (ArrayList<Parada>) paradaService.findAll();
+
+        for (Parada p : paradas) {
+            paradaCB.getItems().add(p.getNombre());
+        }
+    }
+
+    private void loadPeregrinoCB() {
+        ObservableList<Peregrino> peregrinos = FXCollections.observableList(peregrinoService.findAll());
+        peregrinoCB.setItems(peregrinos);
     }
 }

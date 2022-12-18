@@ -51,4 +51,7 @@ public class ParadaServiceImp implements ParadaService {
     public Parada findByNombre(String nombre) {
         return paradaRepository.findByNombre(nombre);
     }
+
+
+
 }

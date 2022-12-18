@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -245,6 +246,9 @@ public class RegistroController implements Initializable {
                 peregrino.setNombre(nombreTF.getText());
                 peregrino.setNacionalidad((String) nacionalidadCB.getValue());
                 peregrino.setCarnet(newCarnet);
+                ArrayList<Parada> paradas = new ArrayList<>();
+                paradas.add(paradaService.findByNombre(paradaCB.getValue().toString()));
+                peregrino.setParadas(paradas);
 
                 peregrinoService.addPeregrino(peregrino);
                 usuarioActual = userService.addUser(user);

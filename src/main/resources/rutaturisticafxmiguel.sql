@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-12-2022 a las 18:53:08
+-- Tiempo de generación: 18-12-2022 a las 02:35:46
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -56,6 +56,15 @@ CREATE TABLE `estancias` (
   `id_parada` bigint(20) DEFAULT NULL,
   `id_peregrino` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estancias`
+--
+
+INSERT INTO `estancias` (`id_estancia`, `fecha`, `vip`, `id_parada`, `id_peregrino`) VALUES
+(1, '2022-12-16', b'1', 4, 2),
+(2, '2022-12-16', b'1', 5, 2),
+(3, '2022-12-16', b'0', 5, 2);
 
 -- --------------------------------------------------------
 
@@ -154,7 +163,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `pass`, `user`, `parada_id_parada`, `peregrino_id_peregrino`, `id_perfil`) VALUES
 (7, 'miguel12', 'miguelh', NULL, 1, 1),
 (8, 'sandru', 'sandru', NULL, 2, 1),
-(9, 'admin', 'admin', NULL, NULL, 3);
+(9, 'admin', 'admin', NULL, NULL, 3),
+(10, 'cangas123', 'admincangas', 3, NULL, 2);
 
 --
 -- Índices para tablas volcadas
@@ -224,7 +234,7 @@ ALTER TABLE `carnets`
 -- AUTO_INCREMENT de la tabla `estancias`
 --
 ALTER TABLE `estancias`
-  MODIFY `id_estancia` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_estancia` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `paradas`
@@ -248,7 +258,7 @@ ALTER TABLE `perfil`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_usuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

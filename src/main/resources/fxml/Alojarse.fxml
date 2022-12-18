@@ -18,8 +18,8 @@
                   <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
-            <ComboBox fx:id="peregrinoCB" layoutX="433.0" layoutY="62.0" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: D5B794;" />
-            <ComboBox fx:id="paradaCB" editable="true" layoutX="130.0" layoutY="62.0" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: D5B794;" />
+            <ComboBox fx:id="peregrinoCB" layoutX="433.0" layoutY="62.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: D5B794;" />
+            <ComboBox fx:id="paradaCB" layoutX="130.0" layoutY="62.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: D5B794;" />
             <Label fx:id="estanciaLBL" layoutX="32.0" layoutY="120.0" text="¿Va a realizar una estancia?" textFill="45322e">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
@@ -31,21 +31,7 @@
                   <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
-
-            <RadioButton fx:id="siRB" layoutX="104.0" layoutY="185.0" mnemonicParsing="false" text="SI" textFill="#45322e73">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="vip" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="noRB" layoutX="198.0" layoutY="185.0" mnemonicParsing="false" text="NO" textFill="#45322e73" toggleGroup="$vip">
-               <font>
-                  <Font name="System Italic" size="20.0" />
-               </font>
-            </RadioButton>
-            <Button fx:id="aceptarBTN" layoutX="32.0" layoutY="325.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: #009000;" text="Alojarse" textFill="#fafafa">
+            <Button fx:id="aceptarBTN" layoutX="32.0" layoutY="325.0" mnemonicParsing="false" onAction="#alojarseAction" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: #009000;" text="Alojarse" textFill="#fafafa">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></Button>
@@ -53,6 +39,7 @@
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></Button>
+            <CheckBox fx:id="vipCB" disable="true" layoutX="94.0" layoutY="192.0" mnemonicParsing="false" />
          </children></Pane>
    </children>
 </AnchorPane>

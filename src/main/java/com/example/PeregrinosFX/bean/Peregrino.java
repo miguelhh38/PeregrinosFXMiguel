@@ -30,7 +30,7 @@ public class Peregrino {
     @OneToMany(mappedBy = "peregrino", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Estancia> estancias;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(name ="paradas")
     private List<Parada> paradas;
     public Peregrino() {
@@ -87,12 +87,7 @@ public class Peregrino {
 
     @Override
     public String toString() {
-        return "Peregrino{" +
-                "idPeregrino=" + idPeregrino +
-                ", nombre='" + nombre + '\'' +
-                ", nacionalidad='" + nacionalidad + '\'' +
-                ", carnet=" + carnet +
-                '}';
+        return "ID: " + this.idPeregrino + " | Nombre: " + this.getNombre();
     }
 
     public String peregrinoData() {
