@@ -3,9 +3,12 @@ package com.example.PeregrinosFX.service.impl;
 import com.example.PeregrinosFX.bean.Parada;
 import com.example.PeregrinosFX.repository.ParadaRepository;
 import com.example.PeregrinosFX.service.ParadaService;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import javafx.collections.ObservableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ParadaServiceImp implements ParadaService {
@@ -52,6 +55,28 @@ public class ParadaServiceImp implements ParadaService {
         return paradaRepository.findByNombre(nombre);
     }
 
+    @Override
+    public Parada findById(long idParada) {
+        return paradaRepository.findById(idParada);
+    }
+
+    public ArrayList<Integer> guardarID(ObservableList nombre) {
+        ArrayList<Integer> listaIdsParada = new ArrayList<>();
+
+        for (int i= 0;i < nombre.size(); i++) {
+            listaIdsParada.add((int) findByNombre(nombre.get(i).toString()).getIdParada());
+        }
+        return listaIdsParada;
+    }
+
+    public String buscarParadas(ArrayList<Integer> paradas) {
+        String ret = "";
+        for (int i=0; i<paradas.size(); i++) {
+            ret += findById(paradas.get(i)).getNombre() + " \n";
+
+        }
+        return ret;
+    }
 
 
 }

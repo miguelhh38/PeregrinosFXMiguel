@@ -10,36 +10,60 @@
          <children>
             <Label fx:id="paradaLBL" layoutX="32.0" layoutY="57.0" text="Parada:" textFill="45322e">
                <font>
-                  <Font name="System Bold Italic" size="24.0" />
+                  <Font name="System Bold Italic" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="peregrinoLBL" layoutX="300.0" layoutY="57.0" text="Peregrino:" textFill="45322e">
+            <Label fx:id="peregrinoLBL" layoutX="299.0" layoutY="60.0" text="Peregrino:" textFill="45322e">
                <font>
-                  <Font name="System Bold Italic" size="24.0" />
+                  <Font name="System Bold Italic" size="20.0" />
                </font>
             </Label>
-            <ComboBox fx:id="peregrinoCB" layoutX="433.0" layoutY="62.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: D5B794;" />
-            <ComboBox fx:id="paradaCB" layoutX="130.0" layoutY="62.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: D5B794;" />
-            <Label fx:id="estanciaLBL" layoutX="32.0" layoutY="120.0" text="¿Va a realizar una estancia?" textFill="45322e">
+            <ComboBox fx:id="peregrinoCB" layoutX="429.0" layoutY="63.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: D5B794;" />
+            <ComboBox fx:id="paradaCB" layoutX="121.0" layoutY="60.0" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: D5B794;" />
+            <Label fx:id="estanciaLBL" layoutX="32.0" layoutY="103.0" text="¿Va a realizar una estancia?" textFill="45322e">
                <font>
-                  <Font name="System Bold Italic" size="24.0" />
+                  <Font name="System Bold Italic" size="20.0" />
                </font>
             </Label>
-            <CheckBox fx:id="estanciaCheck" layoutX="365.0" layoutY="129.0" mnemonicParsing="false" onAction="#estanciaClick" prefWidth="25.0" textFill="45322e" />
-            <Label fx:id="vipLBL" layoutX="32.0" layoutY="183.0" text="VIP:" textFill="#45322e70">
+            <CheckBox fx:id="estanciaCheck" layoutX="335.0" layoutY="110.0" mnemonicParsing="false" onAction="#estanciaClick" prefWidth="25.0" textFill="45322e" />
+            <CheckBox fx:id="vipCB" disable="true" layoutX="88.0" layoutY="149.0" mnemonicParsing="false" />
+            <Label fx:id="vipLBL" layoutX="32.0" layoutY="142.0" text="VIP:" textFill="#45322e70">
                <font>
-                  <Font name="System Bold Italic" size="24.0" />
+                  <Font name="System Bold Italic" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="aceptarBTN" layoutX="32.0" layoutY="325.0" mnemonicParsing="false" onAction="#alojarseAction" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: #009000;" text="Alojarse" textFill="#fafafa">
+            <Button fx:id="aceptarBTN" layoutX="32.0" layoutY="349.0" mnemonicParsing="false" onAction="#alojarseAction" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: #009000;" text="Alojarse" textFill="#fafafa">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></Button>
-            <Button fx:id="cancelarBTN" layoutX="391.0" layoutY="325.0" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: #B22222;" text="Inicio" textFill="#fafafa">
+            <Button fx:id="cancelarBTN" layoutX="390.0" layoutY="349.0" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: #B22222;" text="Inicio" textFill="#fafafa">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></Button>
-            <CheckBox fx:id="vipCB" disable="true" layoutX="94.0" layoutY="192.0" mnemonicParsing="false" />
+            <Label fx:id="metodoLABEL" layoutX="239.0" layoutY="185.0" text="Método de pago:" textFill="#45322e70">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font></Label>
+            <ListView fx:id="serviciosLIST" layoutX="46.0" layoutY="182.0" prefHeight="154.0" prefWidth="156.0" />
+            <Label fx:id="servicioASK" layoutX="183.0" layoutY="143.0" text="¿Desea contratar algún servicio?" textFill="#45322e70">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="metodoCB" layoutX="408.0" layoutY="188.0" prefHeight="25.0" prefWidth="121.0" style="-fx-background-color: D5B794;" />
+            <Label fx:id="totalLABEL" layoutX="239.0" layoutY="229.0" text="Precio total servicios:" textFill="#45322e70">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="serviciosCheck" layoutX="503.0" layoutY="150.0" mnemonicParsing="false" onAction="#serviciosClick" />
+            <Label fx:id="precioLABEL" layoutX="451.0" layoutY="235.0" />
+            <Label fx:id="extraLABEL" layoutX="239.0" layoutY="268.0" text="Extra:" textFill="#45322e70">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="extraTEXT" layoutX="300.0" layoutY="268.0" prefHeight="65.0" prefWidth="228.0" />
          </children></Pane>
    </children>
 </AnchorPane>

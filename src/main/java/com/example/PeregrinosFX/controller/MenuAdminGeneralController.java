@@ -34,6 +34,12 @@ public class MenuAdminGeneralController implements Initializable {
     private Button cerrarsesionBTN;
 
     @FXML
+    private Button serviciosBTN;
+
+    @FXML
+    private Button enviosBUTTON;
+
+    @FXML
     private void abrirAlojarse(ActionEvent event) throws IOException {
         stageManager.switchScene(FxmlView.ALOJARSE);
     }
@@ -51,6 +57,21 @@ public class MenuAdminGeneralController implements Initializable {
     @FXML
     private void cerrarSesion(ActionEvent event) throws IOException {
         stageManager.switchScene(FxmlView.MENUPRINCIPAL);
+    }
+
+    @FXML
+    private void abrirServciosMenu(ActionEvent event) throws IOException {
+        stageManager.switchScene(FxmlView.MENUSERVCIOS);
+    }
+
+    @FXML
+    private void enviosAction(ActionEvent event) throws IOException {
+        stageManager.switchScene(FxmlView.VERENVIOS);
+    }
+
+    @FXML
+    private void verCarnets(ActionEvent event) throws IOException {
+        stageManager.switchScene(FxmlView.VERCARNETS);
     }
 
     @Override

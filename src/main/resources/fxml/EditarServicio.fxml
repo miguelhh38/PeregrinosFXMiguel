@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="pane" stylesheets="@../styles/EditarServicio.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PeregrinosFX.controller.EditarServicioController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="27.0" layoutY="45.0" text="Selecciona el servicio:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font></Label>
+            <Label layoutX="69.0" layoutY="100.0" text="Precio:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="268.0" layoutY="100.0" text="Paradas:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="servicioCB" layoutX="251.0" layoutY="46.0" prefHeight="25.0" prefWidth="289.0" style="-fx-background-color: D5B794;" />
+            <Button fx:id="cancelarBTN" layoutX="27.0" layoutY="290.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="37.0" prefWidth="226.0" style="-fx-background-color: #B22222;" text="Cancelar" textFill="#fafafa">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font></Button>
+            <Button fx:id="guardarBTN" layoutX="27.0" layoutY="340.0" mnemonicParsing="false" onAction="#guardarCambios" prefHeight="37.0" prefWidth="226.0" style="-fx-background-color: #009000;" text="Guardar cambios" textFill="#fafafa">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font></Button>
+            <Label layoutX="27.0" layoutY="71.0" text="Datos actuales" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="precioTEXT" layoutX="101.0" layoutY="231.0" prefHeight="25.0" prefWidth="143.0" style="-fx-background-color: transparent;" />
+            <Label layoutX="27.0" layoutY="154.0" text="Nuevos datos" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Line endX="42.0" endY="-1.52587890625E-5" layoutX="201.0" layoutY="257.0" startX="-100.0" stroke="#45322e" strokeWidth="0.5" />
+            <Label layoutX="27.0" layoutY="231.0" text="Precio:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="273.0" layoutY="188.0" text="Selecciona las nuevas paradas:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <ListView fx:id="paradasLIST" layoutX="303.0" layoutY="217.0" prefHeight="167.0" prefWidth="203.0" style="-fx-background-color: transparent;" />
+            <Label fx:id="precioLABEL" layoutX="139.0" layoutY="105.0" />
+            <Label fx:id="paradasLABEL" layoutX="353.0" layoutY="105.0" />
+            <Label layoutX="27.0" layoutY="193.0" text="Nombre:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nombreTEXT" layoutX="101.0" layoutY="194.0" prefHeight="25.0" prefWidth="143.0" style="-fx-background-color: transparent;" />
+            <Line endX="45.00001525878906" layoutX="199.0" layoutY="219.0" startX="-97.99998474121094" stroke="#45322e" strokeWidth="0.5" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

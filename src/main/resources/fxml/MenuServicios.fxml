@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="pane" stylesheets="@../styles/MenuServicios.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PeregrinosFX.controller.MenuServiciosController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="nuevoServicioBTN" layoutX="176.0" layoutY="119.0" mnemonicParsing="false" onAction="#abrirNuevoServicio" prefHeight="65.0" prefWidth="249.0" style="-fx-background-color: #45322e; -fx-background-repeat: no-repeat; -fx-background-size: 100% 100%; -fx-background-position: center center; }: ;" text="Nuevo servicio" textFill="#eed4b5">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Button>
+            <Button fx:id="editarservicioBTN" layoutX="176.0" layoutY="216.0" mnemonicParsing="false" onAction="#abrirEditarServicio" prefHeight="65.0" prefWidth="249.0" style="-fx-background-color: #45322e; -fx-background-repeat: no-repeat; -fx-background-size: 100% 100%; -fx-background-position: center center; }: ;" text="Editar servicio" textFill="#eed4b5">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Button>
+            <Button fx:id="cerrarsesionBTN" layoutX="436.0" layoutY="339.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="36.0" prefWidth="135.0" style="-fx-background-color: #B22222;" text="Cancelar" textFill="#fafafa">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font></Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

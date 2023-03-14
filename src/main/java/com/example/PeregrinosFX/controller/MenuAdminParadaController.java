@@ -31,6 +31,12 @@ public class MenuAdminParadaController implements Initializable {
     private Button cerrarsesionBTN;
 
     @FXML
+    private Button enviosBUTTON;
+
+    @FXML
+    private Button carnetsButton;
+
+    @FXML
     private void abrirAlojarse(ActionEvent event) throws IOException {
         stageManager.switchScene(FxmlView.ALOJARSE);
     }
@@ -41,8 +47,18 @@ public class MenuAdminParadaController implements Initializable {
     }
 
     @FXML
+    private void vercarnetsAction(ActionEvent event) throws IOException {
+        stageManager.switchScene(FxmlView.VERCARNETS);
+    }
+
+    @FXML
     private void cerrarSesion(ActionEvent event) throws IOException {
         stageManager.switchScene(FxmlView.MENUPRINCIPAL);
+    }
+
+    @FXML
+    private void enviosAction(ActionEvent event) throws IOException {
+        stageManager.switchScene(FxmlView.VERENVIOS);
     }
 
 

@@ -253,6 +253,8 @@ public class RegistroController implements Initializable {
                 peregrinoService.addPeregrino(peregrino);
                 usuarioActual = userService.addUser(user);
 
+                //EXITDB
+                peregrinoService.exportarCarnetXMLExitDB(peregrino);
 
                 stageManager.switchScene(FxmlView.USUARIOCREADO);
 

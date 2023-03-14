@@ -9,4 +9,6 @@ public interface ParadaRepository extends JpaRepository<Parada, Long> {
 
     Parada findByNombre(String nombre);
 
+    Parada findById(long idParada);
+
 }

@@ -120,7 +120,84 @@ public enum FxmlView {
         public String getFxmlFile() {
             return "/fxml/Alojarse.fxml";
         }
+    },
+
+    MENUSERVCIOS {
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("menuservicios.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/MenuServicios.fxml";
+        }
+    },
+
+    NUEVOSERVICIO {
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("nuevoservicio.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/NuevoServicio.fxml";
+        }
+    },
+
+    EDITARSERVICIO {
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("editarservicio.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/EditarServicio.fxml";
+        }
+    },
+
+    ENVIOCASA {
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("enviocasa.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/envioCasa.fxml";
+        }
+    },
+
+    VERENVIOS {
+
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("verenvios.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/verEnvios.fxml";
+        }
+    },
+
+    VERCARNETS {
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("vercarnets.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/verCarnets.fxml";
+        }
+
     };
+
+
+
 
     public abstract String getTitle();
     public abstract String getFxmlFile();

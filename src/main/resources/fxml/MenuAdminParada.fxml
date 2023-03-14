@@ -8,18 +8,28 @@
    <children>
       <Pane layoutX="100.0" layoutY="34.0" prefHeight="400.0" prefWidth="600.0" styleClass="pane" stylesheets="@../styles/AdminParada.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="informeparadaBTN" onAction="#abrirInformeParadas" layoutX="200.0" layoutY="116.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Informe parada" textFill="#eed4b5">
+            <Button fx:id="informeparadaBTN" layoutX="72.0" layoutY="101.0" mnemonicParsing="false" onAction="#abrirInformeParadas" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Informe parada" textFill="#eed4b5">
                <font>
                   <Font name="System Bold Italic" size="19.0" />
                </font></Button>
-            <Button fx:id="alojarseBTN" onAction="#abrirAlojarse" layoutX="200.0" layoutY="221.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Alojarse" textFill="#eed4b5">
+            <Button fx:id="alojarseBTN" layoutX="329.0" layoutY="101.0" mnemonicParsing="false" onAction="#abrirAlojarse" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Alojarse" textFill="#eed4b5">
                <font>
                   <Font name="System Bold Italic" size="19.0" />
                </font></Button>
-            <Button fx:id="cerrarsesionBTN" onAction="#cerrarSesion" layoutX="457.0" layoutY="339.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #B22222;" text="Cerrar sesión" textFill="WHITE">
+            <Button fx:id="cerrarsesionBTN" layoutX="457.0" layoutY="339.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #B22222;" text="Cerrar sesión" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="16.0" />
                </font></Button>
+            <Button fx:id="enviosBUTTON" layoutX="72.0" layoutY="200.0" mnemonicParsing="false" onAction="#enviosAction" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Ver envios" textFill="#eed4b5">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Button>
+            <Button fx:id="carnetsButton" layoutX="329.0" layoutY="200.0" mnemonicParsing="false" onAction="#vercarnetsAction" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Ver carnets" textFill="#eed4b5">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>

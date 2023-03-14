@@ -1,16 +1,11 @@
 package com.example.PeregrinosFX.controller;
 
-import com.example.PeregrinosFX.bean.Carnet;
-import com.example.PeregrinosFX.bean.Estancia;
-import com.example.PeregrinosFX.bean.Parada;
-import com.example.PeregrinosFX.bean.Peregrino;
+import com.db4o.ObjectSet;
+import com.example.PeregrinosFX.bean.*;
 import com.example.PeregrinosFX.config.StageManager;
 import com.example.PeregrinosFX.service.ParadaService;
 import com.example.PeregrinosFX.service.PeregrinoService;
-import com.example.PeregrinosFX.service.impl.CarnetServiceImp;
-import com.example.PeregrinosFX.service.impl.EstanciaServiceImp;
-import com.example.PeregrinosFX.service.impl.ParadaServiceImp;
-import com.example.PeregrinosFX.service.impl.PeregrinoServiceImp;
+import com.example.PeregrinosFX.service.impl.*;
 import com.example.PeregrinosFX.view.FxmlView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +30,7 @@ import static com.example.PeregrinosFX.controller.LoginController.rol;
 @Controller
 public class AlojarseController implements Initializable {
 
+    public static long paradaSel;
     @Lazy
     @Autowired
     private StageManager stageManager;
@@ -43,7 +39,13 @@ public class AlojarseController implements Initializable {
     private ParadaServiceImp paradaService;
 
     @Autowired
+    private ConjuntoServiceImp conjuntoServiceImp;
+
+    @Autowired
     private EstanciaServiceImp estanciaService;
+
+    @Autowired
+    private ServicioServiceImp servicioServiceImp;
 
     @FXML
     private Label paradaLBL;
@@ -74,6 +76,18 @@ public class AlojarseController implements Initializable {
 
     @FXML
     private Button aceptarBTN;
+
+    @FXML
+    private ListView serviciosLIST;
+
+    @FXML
+    private ComboBox metodoCB;
+
+    @FXML
+    private Label precioLABEL;
+
+    @FXML
+    private CheckBox serviciosCheck;
 
     @Autowired
     private CarnetServiceImp carnetService;
@@ -154,17 +168,62 @@ public class AlojarseController implements Initializable {
     }
 
     @FXML
+    private Label servicioASK;
+
+
+    @FXML
     private void estanciaClick(ActionEvent event) throws IOException{
         if(estanciaCheck.isSelected()){
             vipLBL.setTextFill(Paint.valueOf("45322e"));
             vipCB.setDisable(false);
+            servicioASK.setTextFill(Paint.valueOf("45322e"));
+            serviciosCheck.setDisable(false);
         }
         else{
             vipLBL.setTextFill(Paint.valueOf("45322e70"));
             vipCB.setDisable(true);
+            vipLBL.setTextFill(Paint.valueOf("45322e70"));
+            servicioASK.setTextFill(Paint.valueOf("45322e70"));
+            serviciosCheck.setDisable(true);
+            serviciosLIST.setDisable(true);
         }
 
     }
+
+    @FXML
+    private Label metodoLABEL;
+
+    @FXML
+    private Label totalLABEL;
+
+    @FXML
+    private Label extraLABEL;
+
+    @FXML
+    private TextArea extraTEXT;
+
+
+    @FXML
+    private void serviciosClick(ActionEvent event) throws IOException {
+        if (serviciosCheck.isSelected()) {
+            metodoLABEL.setTextFill(Paint.valueOf("45322e"));
+            totalLABEL.setTextFill(Paint.valueOf("45322e"));
+            metodoCB.setDisable(false);
+            serviciosLIST.setDisable(false);
+            extraLABEL.setTextFill(Paint.valueOf("45322e"));
+            extraTEXT.setDisable(false);
+
+
+        } else {
+            metodoLABEL.setTextFill(Paint.valueOf("45322e70"));
+            extraLABEL.setTextFill(Paint.valueOf("45322e70"));
+            totalLABEL.setTextFill(Paint.valueOf("45322e70"));
+            metodoCB.setDisable(true);
+            extraTEXT.setDisable(true);
+            serviciosLIST.setDisable(true);
+        }
+    }
+
     @FXML
     private void cancelarAction(ActionEvent event) throws IOException {
         if(rol == 2) {
@@ -197,8 +256,54 @@ public class AlojarseController implements Initializable {
                 } else {
                     estancia.setVip(false);
                 }
-                peregrinoService.addPeregrino(peregrino);
-                estanciaService.addEstancia(estancia);
+
+                //creacion conjunto contratado
+                if (serviciosCheck.isSelected()) {
+                    String errores = "";
+                    if (serviciosLIST.getSelectionModel().isEmpty()) {
+                        errores += "Debe de seleccionar algun servicio. \n";
+                    }
+                    if (metodoCB.getValue() == null) {
+                        errores += "Debe de seleccionar un metodo de pago .\n";
+                    }
+                    if (errores.isEmpty()) {
+                        peregrinoService.addPeregrino(peregrino);
+                        estanciaService.addEstancia(estancia);
+
+                        String metodo = metodoCB.getValue().toString();
+                        char metodo1 = 'E';
+                        if (metodo.equalsIgnoreCase("Efectivo")) {
+                            metodo1 = 'E';
+                        }
+                        if (metodo.equalsIgnoreCase("Tarjeta")) {
+                            metodo1 = 'T';
+                        }
+                        if (metodo.equalsIgnoreCase("Bizum")) {
+                            metodo1 = 'B';
+                        }
+
+                        ArrayList<Servicio> serviciosSelected = new ArrayList<>();
+                        for (int i=0; i<serviciosLIST.getSelectionModel().getSelectedItems().size(); i++) {
+                            serviciosSelected.add((Servicio) serviciosLIST.getSelectionModel().getSelectedItems().get(i));
+                        }
+
+                        ConjuntoContratado cc = new ConjuntoContratado(estancia.getIdEstancia(),
+                                servicioServiceImp.sumaPrecio(serviciosLIST.getSelectionModel().getSelectedItems()),
+                                metodo1, extraTEXT.getText(), serviciosSelected);
+                        conjuntoServiceImp.guardarConjunto(cc);
+
+                        for (Servicio s1: cc.getServicios()) {
+                            if (s1.getNombre().equals("Envio a casa")) {
+                                stageManager.switchScene(FxmlView.ENVIOCASA);
+
+                            }
+                        }
+
+                    } else {
+                        errorCreacionConjunto(errores);
+                    }
+                }
+
             }
             if (rol == 3) {
                 Peregrino peregrino = (Peregrino) peregrinoCB.getValue();
@@ -219,9 +324,56 @@ public class AlojarseController implements Initializable {
                 } else {
                     estancia.setVip(false);
                 }
-                peregrinoService.addPeregrino(peregrino);
-                estanciaService.addEstancia(estancia);
+
+
+                //creacion conjunto contratado
+                if (serviciosCheck.isSelected()) {
+                    String errores = "";
+                    if (serviciosLIST.getSelectionModel().isEmpty()) {
+                        errores += "Debe de seleccionar algun servicio. \n";
+                    }
+                    if (metodoCB.getValue() == null) {
+                        errores += "Debe de seleccionar un metodo de pago .\n";
+                    }
+                    if (errores.isEmpty()) {
+                        peregrinoService.addPeregrino(peregrino);
+                        estanciaService.addEstancia(estancia);
+
+                        String metodo = metodoCB.getValue().toString();
+                        char metodo1 = 'E';
+                        if (metodo.equalsIgnoreCase("Efectivo")) {
+                            metodo1 = 'E';
+                        }
+                        if (metodo.equalsIgnoreCase("Tarjeta")) {
+                            metodo1 = 'T';
+                        }
+                        if (metodo.equalsIgnoreCase("Bizum")) {
+                            metodo1 = 'B';
+                        }
+
+                        ArrayList<Servicio> serviciosSelected = new ArrayList<>();
+                        for (int i=0; i<serviciosLIST.getSelectionModel().getSelectedItems().size(); i++) {
+                            serviciosSelected.add((Servicio) serviciosLIST.getSelectionModel().getSelectedItems().get(i));
+                        }
+                        ConjuntoContratado cc = new ConjuntoContratado(estancia.getIdEstancia(),
+                                servicioServiceImp.sumaPrecio(serviciosLIST.getSelectionModel().getSelectedItems()),
+                                metodo1, extraTEXT.getText(), serviciosSelected);
+                        conjuntoServiceImp.guardarConjunto(cc);
+
+                        for (Servicio s1: cc.getServicios()) {
+                            if (s1.getNombre().equals("Envio a casa")) {
+                                paradaSel = parada.getIdParada();
+                                stageManager.switchScene(FxmlView.ENVIOCASA);
+                            }
+                        }
+
+                    } else {
+                        errorCreacionConjunto(errores);
+                    }
+                }
             }
+
+
         } else {
             if (rol == 2) {
                 Peregrino peregrino = (Peregrino) peregrinoCB.getValue();
@@ -248,28 +400,67 @@ public class AlojarseController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        serviciosCheck.setDisable(true);
+        serviciosLIST.setDisable(true);
+        extraTEXT.setDisable(true);
         if (rol == 2) {
             paradaCB.setValue(paradaService.findByNombre(RegistroController.usuarioActual.getParada().getNombre()).getNombre());
             paradaCB.setDisable(true);
             loadPeregrinoCB();
+            serviciosLIST.getItems().setAll(servicioServiceImp.findByParada(RegistroController.usuarioActual.getParada()));
         }
         if (rol == 3) {
             loadParadaCB();
             loadPeregrinoCB();
         }
+
+        loadServiciosLIST();
+        loadMetodosCB();
     }
 
     private void loadParadaCB() {
         ArrayList<Parada> paradas = new ArrayList<>();
         paradas = (ArrayList<Parada>) paradaService.findAll();
-
         for (Parada p : paradas) {
             paradaCB.getItems().add(p.getNombre());
         }
+
+        paradaCB.valueProperty().addListener((observable, oldValue, newValue) -> {
+            serviciosLIST.getItems().clear();
+            serviciosLIST.getItems().addAll(servicioServiceImp.findByParada(
+                    paradaService.findByNombre(newValue.toString())));
+
+        });
     }
 
     private void loadPeregrinoCB() {
         ObservableList<Peregrino> peregrinos = FXCollections.observableList(peregrinoService.findAll());
         peregrinoCB.setItems(peregrinos);
+    }
+
+    private void loadServiciosLIST() {
+        serviciosLIST.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        serviciosLIST.setOnMouseClicked((event -> {
+            precioLABEL.setText(String.valueOf(
+                    servicioServiceImp.sumaPrecio(
+                            serviciosLIST.getSelectionModel().getSelectedItems())) + " €");
+        }));
+
+    }
+
+    private void loadMetodosCB() {
+        metodoCB.getItems().addAll(
+                "Efectivo",
+                "Tarjeta",
+                "Bizum"
+        );
+    }
+
+    private void errorCreacionConjunto(String errores) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("ERROR AL CONTRATAR SERVICIOS");
+        alert.setContentText(errores);
+        alert.show();
     }
 }

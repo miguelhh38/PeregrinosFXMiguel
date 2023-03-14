@@ -54,7 +54,6 @@ public class ExportarCarnetController implements Initializable{
             peregrinoService.exportarCarnetXML((Peregrino) peregrinoCB.getValue());
             carnetExp();
         }
-
     }
 
     @FXML

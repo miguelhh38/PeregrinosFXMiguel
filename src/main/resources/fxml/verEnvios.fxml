@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PeregrinosFX.controller.VerEnviosController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0" styleClass="pane" stylesheets="@../styles/verEnvios.css">
+         <children>
+            <Label layoutX="44.0" layoutY="57.0" text="Parada:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font></Label>
+            <ListView fx:id="enviosList" layoutX="43.0" layoutY="137.0" prefHeight="187.0" prefWidth="516.0" />
+            <Label layoutX="44.0" layoutY="94.0" text="Lista de envios" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="cancelarBTN" layoutX="381.0" layoutY="341.0" mnemonicParsing="false" onAction="#cancelarAction" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: #B22222;" text="Inicio" textFill="#fafafa">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font></Button>
+            <ComboBox fx:id="paradaCB" layoutX="136.0" layoutY="60.0" prefHeight="25.0" prefWidth="178.0" style="-fx-background-color: D5B794;" />
+            <Button fx:id="aceptarBTN" layoutX="43.0" layoutY="341.0" mnemonicParsing="false" onAction="#aceptarAction" prefHeight="37.0" prefWidth="178.0" style="-fx-background-color: #009000;" text="Buscar" textFill="#fafafa">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Button>
+         </children></Pane>
+   </children>
+</AnchorPane>

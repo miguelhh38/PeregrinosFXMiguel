@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PeregrinosFX.controller.EnvioCasaController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0" styleClass="pane" stylesheets="@../styles/envioAcasa.css">
+         <children>
+            <Label layoutX="58.0" layoutY="90.0" text="Dirección completa:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="58.0" layoutY="157.0" text="Localidad:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="53.0" text="Datos dirección de envío" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="219.0" text="Datos paquete" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="58.0" layoutY="257.0" text="Peso:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="303.0" layoutY="257.0" text="Tamaño:" textFill="#45322e">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="confirmar" layoutX="187.0" layoutY="337.0" mnemonicParsing="false" onAction="#confirmarAction" prefHeight="37.0" prefWidth="226.0" style="-fx-background-color: #009000;" text="Confirmar" textFill="#fafafa">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Button>
+            <Line endX="167.60000610351562" layoutX="182.0" layoutY="145.0" startX="-100.0" stroke="#45322e" strokeWidth="0.5" />
+            <Line endX="165.60000610351562" layoutX="182.0" layoutY="210.0" startX="-100.0" stroke="#45322e" strokeWidth="0.5" />
+            <Line endX="26.600006103515625" layoutX="213.0" layoutY="282.0" startX="-100.0" stroke="#45322e" strokeWidth="0.5" />
+            <Line endX="31.600006103515625" layoutX="481.0" layoutY="283.0" startX="-94.4000015258789" stroke="#45322e" strokeWidth="0.5" />
+            <TextField fx:id="dirTEXT" layoutX="82.0" layoutY="116.0" prefHeight="30.0" prefWidth="269.0" style="-fx-background-color: transparent;" />
+            <TextField fx:id="localidadTEXT" layoutX="82.0" layoutY="180.0" prefHeight="30.0" prefWidth="267.0" style="-fx-background-color: transparent;" />
+            <TextField fx:id="pesoTEXT" layoutX="113.0" layoutY="258.0" prefHeight="25.0" prefWidth="127.0" style="-fx-background-color: transparent;" />
+            <TextField fx:id="sizeTEXT" layoutX="386.0" layoutY="258.0" prefHeight="25.0" prefWidth="128.0" style="-fx-background-color: transparent;" />
+            <Label layoutX="58.0" layoutY="299.0" text="Urgente:">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="urgenteCHECK" layoutX="146.0" layoutY="304.0" mnemonicParsing="false" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
