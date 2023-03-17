@@ -8,36 +8,41 @@
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0" styleClass="pane" stylesheets="@../styles/MenuAdminGeneral.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="informeparadaBTN" layoutX="76.0" layoutY="79.0" mnemonicParsing="false" onAction="#abrirInformeParadas" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Informe parada" textFill="#eed4b5">
+            <Button fx:id="informeparadaBTN" layoutX="76.0" layoutY="62.0" mnemonicParsing="false" onAction="#abrirInformeParadas" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Informe parada" textFill="#eed4b5">
                <font>
                   <Font name="System Bold Italic" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="exportarcarnetBTN" layoutX="339.0" layoutY="79.0" mnemonicParsing="false" onAction="#abrirExportarCarnet" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Exportar carnet" textFill="#eed4b5">
+            <Button fx:id="exportarcarnetBTN" layoutX="339.0" layoutY="62.0" mnemonicParsing="false" onAction="#abrirExportarCarnet" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Exportar carnet" textFill="#eed4b5">
                <font>
                   <Font name="System Bold Italic" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="alojarseBTN" layoutX="76.0" layoutY="174.0" mnemonicParsing="false" onAction="#abrirAlojarse" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Alojarse" textFill="#eed4b5">
+            <Button fx:id="alojarseBTN" layoutX="76.0" layoutY="140.0" mnemonicParsing="false" onAction="#abrirAlojarse" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Alojarse" textFill="#eed4b5">
                <font>
                   <Font name="System Bold Italic" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="cerrarsesionBTN" layoutX="457.0" layoutY="339.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="36.0" prefWidth="121.0" style="-fx-background-color: #B22222;" text="Cerrar sesión" textFill="WHITE">
+            <Button fx:id="cerrarsesionBTN" layoutX="452.0" layoutY="345.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="36.0" prefWidth="127.0" style="-fx-background-color: #B22222;" text="Cerrar sesión" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="16.0" />
                </font></Button>
-            <Button fx:id="serviciosBTN" layoutX="339.0" layoutY="174.0" mnemonicParsing="false" onAction="#abrirServciosMenu" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Servicios" textFill="#eed4b5">
+            <Button fx:id="serviciosBTN" layoutX="339.0" layoutY="140.0" mnemonicParsing="false" onAction="#abrirServciosMenu" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Servicios" textFill="#eed4b5">
                <font>
                   <Font name="System Bold Italic" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="enviosBUTTON" layoutX="76.0" layoutY="264.0" mnemonicParsing="false" onAction="#enviosAction" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Ver envios" textFill="#eed4b5">
+            <Button fx:id="enviosBUTTON" layoutX="76.0" layoutY="219.0" mnemonicParsing="false" onAction="#enviosAction" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Ver envios" textFill="#eed4b5">
                <font>
                   <Font name="System Bold Italic" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="verCarnets" layoutX="339.0" layoutY="264.0" mnemonicParsing="false" onAction="#verCarnets" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Ver carnets" textFill="#eed4b5">
+            <Button fx:id="verCarnets" layoutX="339.0" layoutY="219.0" mnemonicParsing="false" onAction="#verCarnets" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Ver carnets" textFill="#eed4b5">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Button>
+            <Button fx:id="backupCarnets" layoutX="76.0" layoutY="293.0" mnemonicParsing="false" onAction="#backupCarnetsAction" prefHeight="52.0" prefWidth="199.0" style="-fx-background-color: #45322e;" text="Backup carnets" textFill="#eed4b5">
                <font>
                   <Font name="System Bold Italic" size="19.0" />
                </font>

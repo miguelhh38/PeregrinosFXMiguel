@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-12-2022 a las 02:35:46
+-- Tiempo de generación: 17-03-2023 a las 16:55:14
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -40,8 +40,8 @@ CREATE TABLE `carnets` (
 --
 
 INSERT INTO `carnets` (`id_carnet`, `distancia`, `fechaexp`, `numvips`, `id_parada`) VALUES
-(3, 0, '2022-12-09', 0, 3),
-(4, 0, '2022-12-10', 0, 3);
+(1, 300, '2023-03-13', 0, 3),
+(2, 100, '2023-03-13', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -62,9 +62,10 @@ CREATE TABLE `estancias` (
 --
 
 INSERT INTO `estancias` (`id_estancia`, `fecha`, `vip`, `id_parada`, `id_peregrino`) VALUES
-(1, '2022-12-16', b'1', 4, 2),
-(2, '2022-12-16', b'1', 5, 2),
-(3, '2022-12-16', b'0', 5, 2);
+(1, '2023-03-13', b'0', 4, 1),
+(2, '2023-03-15', b'1', 3, 1),
+(3, '2023-03-17', b'0', 2, 1),
+(4, '2023-03-17', b'0', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -107,8 +108,8 @@ CREATE TABLE `peregrinos` (
 --
 
 INSERT INTO `peregrinos` (`id_peregrino`, `nacionalidad`, `nombre`, `id_carnet`) VALUES
-(1, 'España', 'Miguel', 3),
-(2, 'Bélgica', 'Andrei', 4);
+(1, 'España', 'miguel', 1),
+(2, 'Andorra', 'Borja', 2);
 
 -- --------------------------------------------------------
 
@@ -120,6 +121,18 @@ CREATE TABLE `peregrinos_paradas` (
   `peregrinos_id_peregrino` bigint(20) NOT NULL,
   `paradas_id_parada` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `peregrinos_paradas`
+--
+
+INSERT INTO `peregrinos_paradas` (`peregrinos_id_peregrino`, `paradas_id_parada`) VALUES
+(1, 3),
+(1, 4),
+(1, 3),
+(1, 2),
+(2, 2),
+(2, 3);
 
 -- --------------------------------------------------------
 
@@ -137,9 +150,9 @@ CREATE TABLE `perfil` (
 --
 
 INSERT INTO `perfil` (`id_perfil`, `rol`) VALUES
-(1, 'Peregrino'),
-(2, 'Parada'),
-(3, 'AdminGeneral');
+(1, 'peregrino'),
+(2, 'parada'),
+(3, 'admin');
 
 -- --------------------------------------------------------
 
@@ -161,10 +174,11 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `pass`, `user`, `parada_id_parada`, `peregrino_id_peregrino`, `id_perfil`) VALUES
-(7, 'miguel12', 'miguelh', NULL, 1, 1),
-(8, 'sandru', 'sandru', NULL, 2, 1),
-(9, 'admin', 'admin', NULL, NULL, 3),
-(10, 'cangas123', 'admincangas', 3, NULL, 2);
+(3, 'miguel123', 'miguelh', NULL, 1, 1),
+(4, 'admin', 'admin', NULL, NULL, 3),
+(5, 'cangas', 'admincangas', 3, NULL, 2),
+(6, 'santander', 'adminsantander', 2, NULL, 2),
+(7, 'borja123', 'borjamarin', NULL, 2, 1);
 
 --
 -- Índices para tablas volcadas
@@ -228,13 +242,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `carnets`
 --
 ALTER TABLE `carnets`
-  MODIFY `id_carnet` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_carnet` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `estancias`
 --
 ALTER TABLE `estancias`
-  MODIFY `id_estancia` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_estancia` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `paradas`
@@ -258,7 +272,7 @@ ALTER TABLE `perfil`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_usuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

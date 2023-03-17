@@ -10,20 +10,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.couchbase.CouchbaseProperties;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static com.example.PeregrinosFX.controller.LoginController.rol;
@@ -56,7 +47,12 @@ public class verCarnetsController implements Initializable {
 
     @FXML
     private void cancelarAction(ActionEvent event) throws IOException {
-        stageManager.switchScene(FxmlView.MENUADMINPARADA);
+        if (rol == 2) {
+            stageManager.switchScene(FxmlView.MENUADMINPARADA);
+        }
+        if (rol == 3) {
+            stageManager.switchScene(FxmlView.MENUADMINGENERAL);
+        }
     }
 
     @Override
@@ -78,41 +74,47 @@ public class verCarnetsController implements Initializable {
             paradaCB.getItems().add(p.getNombre());
         }
 
+        if (rol == 3) {
+            ExitDB exitDB = new ExitDB();
+            paradaCB.valueProperty().addListener((observable, oldValue, newValue) -> {
+                listviewCarnets.getItems().clear();
+                exitDB.verDatosCol(paradaService.findByNombre(paradaCB.getValue().toString())
+                        ,listviewCarnets);
+
+            });
+        }
+
+
     }
 
     private void loadlistviewCarnets() {
         ExitDB exitDB = new ExitDB();
-        if (rol==2) {
+        if (rol == 2) {
             exitDB.verDatosCol(paradaService.findByNombre(paradaCB.getValue().toString()), listviewCarnets);
-        }
-        if (rol == 3) {
-
         }
     }
 
     @FXML
     private void verDetallesAction(ActionEvent event) throws IOException {
+        Parada parada = new Parada();
 
-        URL resourceURL = getClass().getResource(System.getProperty("user.dir") + "/export/" +
-                listviewCarnets.getSelectionModel().getSelectedItem().toString());
+        if (rol == 2) {
+            parada = RegistroController.usuarioActual.getParada();
+        }
+        if (rol == 3) {
+            parada = paradaService.findByNombre(paradaCB.getValue().toString());
+        }
 
-        try (InputStream inputStream = resourceURL.openStream()) {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse(inputStream);
+        ExitDB exitDB = new ExitDB();
 
-            // Hacer algo con el documento XML cargado, como mostrarlo en un TextArea
-            // ...
+
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR DE REGISTRO");
+            alert.setTitle("DETALLES");
             alert.setHeaderText(null);
-            alert.setContentText(document.getTextContent().toString());
-            Optional<ButtonType> result = alert.showAndWait();
+            alert.setContentText(exitDB.buscarPorParadaNombre(parada, listviewCarnets.getSelectionModel().getSelectedItem().toString()));
             alert.show();
 
-        } catch (IOException | ParserConfigurationException | SAXException e) {
-            e.printStackTrace();
-        }
+
 
     }
 

@@ -68,27 +68,7 @@ public class EditarServicioController implements Initializable {
 
     @FXML
     private void guardarCambios(ActionEvent event) throws IOException {
-        String errores = "";
-        if (paradasLIST.getSelectionModel().isEmpty()) {
-            errores += "Debe de seleccionar alguna parada.\n";
-        }
-        if (nombreTEXT.getText().length()<=0) {
-            errores += "Debe ingresar el nombre del servicio.\n";
-        }
-        if (precioTEXT.getText().length()<=0) {
-            errores += "Debe ingresar el precio del servicio.\n";
-        }
-        if (Utils.leerDouble(precioTEXT.getText())) {
-            errores += "Formato del precio incorrecto. Introduce numero decimal (x.x).\n";
-        }
-
-        if (errores.isEmpty()) {
-            service.editarServicio(servicioCB.getValue(), nombreTEXT.getText(), Double.parseDouble(precioTEXT.getText()),
-                    paradaService.guardarID(paradasLIST.getSelectionModel().getSelectedItems()));
-            stageManager.switchScene(FxmlView.MENUADMINGENERAL);
-        } else {
-            errorAlert(errores);
-        }
+        service.editarServicio(paradasLIST, nombreTEXT, precioTEXT, servicioCB, paradaService, stageManager);
     }
 
     @Override
@@ -115,12 +95,6 @@ public class EditarServicioController implements Initializable {
         }
     }
 
-    private void errorAlert(String errores) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("DATOS MAL INTRODUCIDOS");
-        alert.setHeaderText(null);
-        alert.setContentText(errores);
-        Optional<ButtonType> result = alert.showAndWait();
-    }
+
 
 }

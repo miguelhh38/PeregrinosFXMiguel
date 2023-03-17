@@ -1,6 +1,8 @@
 package com.example.PeregrinosFX.controller;
 
 import com.example.PeregrinosFX.config.StageManager;
+import com.example.PeregrinosFX.repository.CarnetRepository;
+import com.example.PeregrinosFX.service.impl.CarnetServiceImp;
 import com.example.PeregrinosFX.view.FxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +23,9 @@ public class MenuAdminGeneralController implements Initializable {
     @Autowired
     private StageManager stageManager;
 
+    @Autowired
+    private CarnetServiceImp carnetServiceImp;
+
     @FXML
     private Button informeparadaBTN;
 
@@ -38,6 +43,9 @@ public class MenuAdminGeneralController implements Initializable {
 
     @FXML
     private Button enviosBUTTON;
+
+    @FXML
+    private Button backupCarnets;
 
     @FXML
     private void abrirAlojarse(ActionEvent event) throws IOException {
@@ -72,6 +80,11 @@ public class MenuAdminGeneralController implements Initializable {
     @FXML
     private void verCarnets(ActionEvent event) throws IOException {
         stageManager.switchScene(FxmlView.VERCARNETS);
+    }
+
+    @FXML
+    private void backupCarnetsAction(ActionEvent event) throws IOException {
+        carnetServiceImp.backup();
     }
 
     @Override

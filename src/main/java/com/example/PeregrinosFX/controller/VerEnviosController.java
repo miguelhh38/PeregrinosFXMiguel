@@ -6,7 +6,6 @@ import com.example.PeregrinosFX.config.StageManager;
 import com.example.PeregrinosFX.service.impl.EnvioACasaServiceImp;
 import com.example.PeregrinosFX.service.impl.ParadaServiceImp;
 import com.example.PeregrinosFX.view.FxmlView;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +19,7 @@ import org.springframework.stereotype.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
+
 import java.util.ResourceBundle;
 
 import static com.example.PeregrinosFX.controller.LoginController.rol;

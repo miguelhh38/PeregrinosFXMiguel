@@ -1,5 +1,6 @@
 package com.example.PeregrinosFX.service.impl;
 
+import com.example.PeregrinosFX.bean.Carnet;
 import com.example.PeregrinosFX.bean.Estancia;
 import com.example.PeregrinosFX.bean.Parada;
 import com.example.PeregrinosFX.bean.Peregrino;
@@ -73,8 +74,9 @@ public class PeregrinoServiceImp implements PeregrinoService {
     }
 
     @Override
-    public void exportarCarnetXML(Peregrino p) {
+    public String exportarCarnetXML(Peregrino p) {
         String path = p.getNombre() + "_peregrino.xml";
+        String text = "";
 
         try {
             DocumentBuilderFactory fabricaConstructorDocumento = DocumentBuilderFactory.newInstance();
@@ -189,6 +191,8 @@ public class PeregrinoServiceImp implements PeregrinoService {
 
             outputStream.close();
 
+            text = documento.getTextContent();
+
 
         } catch (ParserConfigurationException ex) {
             System.out.println("Se ha producido una ParseConfigurationException: " + ex.getMessage());
@@ -201,7 +205,13 @@ public class PeregrinoServiceImp implements PeregrinoService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return text;
 
+    }
+
+    @Override
+    public Peregrino findByCarnet(Carnet carnet) {
+        return peregrinoRepository.findByCarnet(carnet);
     }
 
     public void exportarCarnetXMLExitDB(Peregrino p) {

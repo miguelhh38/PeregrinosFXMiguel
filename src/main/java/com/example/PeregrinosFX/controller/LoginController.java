@@ -119,7 +119,7 @@ public class LoginController implements Initializable {
         if (userService.verificarcredenciales(getUsuarioTF(), getContrasenaTF())) {
             User u = userService.findByUsuario(getUsuarioTF());
             stageManager.switchScene(FxmlView.MENUADMINPARADA);
-            Long idPerfil =u.getPerfil().getIdPerfil();
+            Long idPerfil = u.getPerfil().getIdPerfil();
             if (idPerfil == 1) {
                 rol = Long.valueOf(1);
                 stageManager.switchScene(FxmlView.MENUPEREGRINO);
@@ -137,10 +137,12 @@ public class LoginController implements Initializable {
             usuarioLBL.setTextFill(Paint.valueOf("#FF0000"));
         }
     }
+
     @FXML
     private void volverAlMenu(ActionEvent event) throws IOException {
         stageManager.switchScene(FxmlView.MENUPRINCIPAL);
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

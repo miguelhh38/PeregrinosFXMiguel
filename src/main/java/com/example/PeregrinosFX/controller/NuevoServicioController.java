@@ -52,30 +52,8 @@ public class NuevoServicioController implements Initializable {
 
     @FXML
     private void confirmar(ActionEvent event) throws IOException {
-        String errores = "";
-        if (paradasLIST.getSelectionModel().isEmpty()) {
-            errores += "Debe de seleccionar alguna parada.\n";
-        }
-        if (nombreTFiel.getText().length()<=0) {
-            errores += "Debe ingresar el nombre del servicio.\n";
-        }
-        if (precioTFIEL.getText().length()<=0) {
-            errores += "Debe ingresar el precio del servicio.\n";
-        }
-        if (Utils.leerDouble(precioTFIEL.getText())) {
-            errores += "Formato del precio incorrecto. Introduce numero decimal (x.x).\n";
-        }
-
-        if (errores.isEmpty()) {
-            servicioServiceImp.guardarNuevoServicio(nombreTFiel.getText(),
-                    Double.parseDouble(precioTFIEL.getText()),
-                    paradaService.guardarID(paradasLIST.getSelectionModel().getSelectedItems()));
-            servicioServiceImp.verdatosDB40();
-
-
-        } else {
-            errorAlert(errores);
-        }
+        servicioServiceImp.nuevoServicio(paradasLIST, nombreTFiel, precioTFIEL, paradaService);
+        stageManager.switchScene(FxmlView.MENUADMINGENERAL);
     }
 
     @FXML
@@ -94,14 +72,6 @@ public class NuevoServicioController implements Initializable {
         for (Parada p: paradas) {
             paradasLIST.getItems().add(p.getNombre());
         }
-    }
-
-    private void errorAlert(String errores) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("DATOS MAL INTRODUCIDOS");
-        alert.setHeaderText(null);
-        alert.setContentText(errores);
-        Optional<ButtonType> result = alert.showAndWait();
     }
 
 

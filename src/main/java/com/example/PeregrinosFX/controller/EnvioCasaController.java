@@ -61,61 +61,12 @@ public class EnvioCasaController implements Initializable {
 
     @FXML
     private void confirmarAction(ActionEvent event) throws IOException {
-        String errores = "";
-        if (dirTEXT.getText().length() < 3) {
-            errores += "La dirección no es válida.\n";
+        envioACasaService.realizarEnvio(dirTEXT, localidadTEXT, sizeTEXT, pesoTEXT, urgenteCHECK);
+        if (rol == 2) {
+            stageManager.switchScene(FxmlView.MENUADMINPARADA);
         }
-        if (localidadTEXT.getText().length()<2) {
-            errores += "La localidad no es válida.\n";
+        if (rol == 3) {
+            stageManager.switchScene(FxmlView.MENUADMINGENERAL);
         }
-        if (!Utils.leerInt(sizeTEXT.getText())) {
-            errores += "Formato del tamaño incorrecto. Introduce numero entero.\n";
-        }
-        if (!Utils.leerDouble(pesoTEXT.getText())) {
-            errores += "Formato del peso incorrecto. Introduce numero decimal (x.x).\n";
-        }
-
-        if (errores.isEmpty()) {
-            if (rol == 2) {
-                Direccion direccion = new Direccion(dirTEXT.getText(), localidadTEXT.getText());
-
-
-                EnvioACasa envioACasa = new EnvioACasa(Double.parseDouble(pesoTEXT.getText()),
-                        Integer.parseInt(sizeTEXT.getText()), urgenteCHECK.isSelected(), direccion,
-                        RegistroController.usuarioActual.getParada().getIdParada());
-                envioACasaService.addEnvio(envioACasa);
-
-            }
-            if (rol == 3) {
-                Direccion direccion = new Direccion(dirTEXT.getText(), localidadTEXT.getText());
-
-                EnvioACasa envioACasa = new EnvioACasa(Double.parseDouble(pesoTEXT.getText()),
-                        Integer.parseInt(sizeTEXT.getText()), urgenteCHECK.isSelected(), direccion,
-                        AlojarseController.paradaSel);
-                envioACasaService.addEnvio(envioACasa);
-                envioGuardado();
-                stageManager.switchScene(FxmlView.MENUADMINGENERAL);
-            }
-        } else {
-            error(errores);
-        }
-
     }
-
-    private void envioGuardado() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("ENVIO GUARDADO");
-        alert.setHeaderText(null);
-        alert.setContentText("El envio ha sido guardado correctamente");
-        Optional<ButtonType> result = alert.showAndWait();
-    }
-
-    private void error(String errores) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("ERROR AL GUARDAR ENVIO");
-        alert.setHeaderText(null);
-        alert.setContentText(errores);
-        Optional<ButtonType> result = alert.showAndWait();
-    }
-
 }

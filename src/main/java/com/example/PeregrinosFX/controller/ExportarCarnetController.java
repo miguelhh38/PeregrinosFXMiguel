@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 import static com.example.PeregrinosFX.controller.LoginController.rol;
 
 @Controller
-public class ExportarCarnetController implements Initializable{
+public class ExportarCarnetController implements Initializable {
 
     @Lazy
     @Autowired
@@ -58,18 +58,18 @@ public class ExportarCarnetController implements Initializable{
 
     @FXML
     private void cancelarAction(ActionEvent event) throws IOException {
-        if(rol == 1) {
+        if (rol == 1) {
             stageManager.switchScene(FxmlView.MENUPEREGRINO);
         }
-        if(rol == 3) {
+        if (rol == 3) {
             stageManager.switchScene(FxmlView.MENUADMINGENERAL);
         }
     }
+
     @FXML
     private void abrirRegistro(ActionEvent event) throws IOException {
         stageManager.switchScene(FxmlView.REGISTRO);
     }
-
 
 
     @Override
